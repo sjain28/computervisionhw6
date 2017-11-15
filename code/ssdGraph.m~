@@ -1,0 +1,24 @@
+function [e, dSpan] = ssdGraph(I, J, xI, sigma, h)
+% what is the support of a window function
+%[pos, lambda] = goodFeatures(I, 2, 15, Inf, 20, 80);
+%xI = pos(:,1);
+    dSpan = zeros(1, 2*h + 1);
+    e = zeros(2*h+1,2*h+1);
+    window1 = gauss(-h:h, 0, sigma, 1);
+    window2 = window1';
+    i = I(xI(1)-h:xI(1)+h,xI(2)-h:xI(2)+h); 
+    for d1 = -h : h
+        dSpan(d1+h+1) = d1;
+        for  d2 = -h : h
+            j = J(xI(1)-h+d1:xI(1)+h+d1,xI(2)-h+d2:xI(2)+h+d2);
+            dex1= d1+h+1;
+            dex2 = d2+h+1;
+            ssd = (i-j).^2;
+            ssd = 
+            %ssd = conv2(ssd, window1, 'same');
+            %ssd = conv2(ssd, window2, 'same');
+            e(dex1,dex2) = sum(sum(ssd))/numel(ssd);
+        end
+    end 
+end
+

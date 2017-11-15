@@ -1,0 +1,18 @@
+function d = scaleTrack(I, J, xI, sigma)
+%UNTITLED3 Summary of this function goes here
+%   Detailed explanation goes here
+
+    pI = gaussianPyramid(I, 0.5);
+    pJ = gaussianPyramid(J, 0.5);
+    %[xI, ~] = goodFeatures(p{4}, sigma, 15, Inf, 20, 80);
+    d = lucas_kanade(pI{4}, pJ{4}, xI/16, sigma);
+    
+    for i = 3:1
+        
+       d = lucas_kanade(pI{i}, pJ{i}, xI/(2^i), sigma, d*);
+       
+    end
+    
+
+end
+

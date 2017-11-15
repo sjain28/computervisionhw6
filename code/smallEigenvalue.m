@@ -1,5 +1,5 @@
 function lambdaMin = smallEigenvalue(I, sigma)
-    I = double(I);
+    I = double(I); 
     gradient = grad(I);
     Gx = gradient{1};
     Gy = gradient{2};
