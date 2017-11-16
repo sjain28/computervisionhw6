@@ -1,7 +1,4 @@
 function [e, dSpan] = ssdGraph(I, J, xI, sigma, h)
-% what is the support of a window function
-%[pos, lambda] = goodFeatures(I, 2, 15, Inf, 20, 80);
-%xI = pos(:,1);
     dSpan = zeros(1, 2*h + 1);
     e = zeros(2*h+1,2*h+1);
     window1 = gauss(-h:h, 0, sigma, 1);
