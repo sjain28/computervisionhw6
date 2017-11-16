@@ -2,13 +2,15 @@ function [pos, lambda] = goodFeatures(I, sigma, lambdaThresh, nMax, minDist, mar
     lam = smallEigenvalue(I, sigma);
     [~, idx] = sort(lam(:), 'descend');
     
-    badFeatures = find(lam < lambdaThresh);
-    idx = setdiff(idx, badFeatures);
     finalIndices = []; 
     
     for i = 1:nMax
         
         if isempty(idx)
+            break
+        end
+        
+        if lam(idx(1)) < lambdaThresh
             break
         end
         

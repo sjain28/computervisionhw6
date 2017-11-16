@@ -1,6 +1,6 @@
 function lambdaMin = smallEigenvalue(I, sigma)
     I = double(I); 
-    gradient = grad(I);
+    [gradient, ~, ~] = grad(I, sigma);
     Gx = gradient{1};
     Gy = gradient{2};
     
@@ -20,7 +20,6 @@ function lambdaMin = smallEigenvalue(I, sigma)
     q = conv2(q, window2, 'same');
     
     S = p + q;
-    D = (p-q).^2 + 4*r.^2;
-    D = D.^(double(1/2));
+    D = sqrt((p-q).^2 + 4*r.^2);
     lambdaMin = S-D;
 end
